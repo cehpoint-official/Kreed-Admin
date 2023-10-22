@@ -1,0 +1,46 @@
+@import "../../styles/responsiveness.scss";
+
+.smMenue{
+    display: none;
+ 
+    .item{
+        gap: 10px;
+
+
+        .title{
+            font-size: 12px;
+            font-weight: 300;
+            color: white;
+            text-transform: capitalize;
+            display: none;
+
+          
+        }
+
+        .listItem{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 8px;
+         
+          
+            img{
+            width: 28px;
+            height: 30px;
+            }
+
+      
+        }
+    }
+
+    @include sm{
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        border-top: 1px solid rgb(179, 179, 179);
+        padding: 10px;
+        margin-bottom: 10px;
+    
+      }
+}
