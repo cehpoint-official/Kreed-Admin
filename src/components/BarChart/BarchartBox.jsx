@@ -17,7 +17,6 @@ const BarchartBox = (props) => {
               bottom: 5,
             }}
           >
-            <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="games" />
             <YAxis />
             <Tooltip />

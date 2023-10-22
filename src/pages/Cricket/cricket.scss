@@ -1,24 +1,104 @@
-.cricket{
-   display: flex;
-   flex-direction: column;
-   gap: 30px;
-   width: 100%;
-   height: 100%;
+@import "../../styles/responsiveness.scss";
 
-   h1{
-      font-weight: lighter;
-      font-size: 40px;
-   }
-   .upperSec{
+.cricket {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+  height: 100%;
+  @include md {
+    align-items: center;
+    justify-content: center;
+  }
+
+  h1 {
+    font-weight: lighter;
+    font-size: 40px;
+
+    @include lg {
+      font-size: 25px;
+    }
+  }
+  p {
+    font-weight: lighter;
+    letter-spacing: 1px;
+  }
+  .upperSec {
+    margin-bottom: 30px;
     height: 60vh;
-    padding: 30px;
-   }
+    @include lg {
+      width: 100%;
+      height: 75vh;
+    }
+  }
 
-   .lowerSec{
-    border: 2px solid green;
-   }
+  .lowerSec {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    line-height: 28px;
+    gap: 30px;
 
-   .chartGrid{
-      display: none;;
-   }
+    @include md {
+      display: none;
+    }
+    .right {
+      @include lg {
+        width: 60%;
+      }
+      padding: 10px;
+      width: 30%;
+      line-height: 30px;
+      .text {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        align-items: center;
+
+        .color1 {
+          width: 20px;
+          height: 10px;
+          background-color: rgba(245, 224, 114, 1);
+        }
+        .color2 {
+          width: 20px;
+          height: 10px;
+          background-color: rgba(16, 170, 191, 1);
+        }
+      }
+    }
+
+    .left {
+      @include lg {
+        width: 60%;
+      }
+      padding: 10px;
+      width: 30%;
+      line-height: 30px;
+      border: 1px solid rgb(67, 67, 67);
+      border-radius: 10px;
+      .text {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        align-items: center;
+
+        .color1 {
+          width: 20px;
+          height: 10px;
+          background-color: rgba(216, 150, 22, 1);
+        }
+        .color2 {
+          width: 20px;
+          height: 10px;
+          background-color: rgba(147, 147, 150, 1);
+        }
+      }
+    }
+  }
+
+  .chartGrid {
+    display: none;
+  }
 }
