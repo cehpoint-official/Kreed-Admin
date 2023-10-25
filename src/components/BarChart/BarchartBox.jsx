@@ -18,8 +18,7 @@ const BarchartBox = (props) => {
             }}
           >
             <XAxis dataKey="games" />
-            <YAxis />
-            <Tooltip />
+            <Tooltip   contentStyle={{background : "white" ,borderRadius : "5px" , padding : "0 10px 10px 10px"}} />
             <Legend />
             <Bar dataKey={props.dataKey} fill={props.color} />
             

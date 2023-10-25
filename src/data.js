@@ -612,3 +612,13 @@ export const CricPieChartData2 = {
 
   colors: ["rgba(216, 150, 22, 1)", "rgba(147, 147, 150, 1)"],
 };
+
+
+export const badmintonData = {
+  chartData: [
+    { name: "wins", value: 50},
+    { name: "loses", value: 30 },
+  ],
+
+  colors: ["rgba(216, 150, 22, 1)", "rgba(147, 147, 150, 1)"],
+};

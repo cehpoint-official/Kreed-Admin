@@ -1,5 +1,9 @@
 import React from "react";
 import "././badminton.scss";
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+import Chart from "../../components/CricPieChart/Chart";
+import { badmintonData } from "../../data.js";
 import {
   AreaChart,
   Area,
@@ -47,7 +51,9 @@ const Badminton = () => {
             <CartesianGrid strokeDasharray="3 3" className="chartGrid" />
             <XAxis dataKey="name" />
             <YAxis />
-            <Tooltip />
+            <Tooltip
+              contentStyle={{ borderRadius: "10px", padding: "0 8px 0 8px" }}
+            />
             <Area
               type="monotone"
               dataKey="name"
@@ -66,7 +72,30 @@ const Badminton = () => {
         </ResponsiveContainer>
       </div>
       <div className="lowerSec">
-        
+        <div className="right">
+          <p>Win Percentage</p>
+          <div className="container">
+            <div className="featuredChart">
+              <CircularProgressbar value={50} text="50%" strokeWidth={5} />
+            </div>
+            <div className="content">
+              <p>Total Matches Played</p>
+              <p className="matchesText">370</p>
+            </div>
+          </div>
+        </div>
+        <div className="left">
+          <p className="title">Singles vs Doubles</p>
+          <Chart {...badmintonData} />
+
+          <div className="text">
+            <p>Singles</p>
+            <div className="color"></div>
+
+            <p>Doubles</p>
+            <div className="color2"></div>
+          </div>
+        </div>
       </div>
     </div>
   );
