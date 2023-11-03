@@ -6,7 +6,7 @@ export const menu = [
       {
         id: 1,
         title: "Home",
-        url: "/",
+        url: "/home",
         icon: "/svgs/home.svg",
       },
       {
@@ -60,13 +60,13 @@ export const menu = [
       {
         id: 1,
         title: "Charts",
-        url: "/",
+        url: "/home",
         icon: "/svgs/graph.svg",
       },
       {
         id: 2,
         title: "Logs",
-        url: "/",
+        url: "/home",
         icon: "/svgs/logs.svg",
       },
     ],
@@ -601,7 +601,7 @@ export const CricPieChartData1 = {
     { name: "mvps", value: 10 },
     { name: "plays", value: 90 },
   ],
-  colors: ["rgba(245, 224, 114, 1)", "rgba(16, 170, 191, 1)"],
+  colors: ["rgba(247, 248, 253, 1)", "rgba(71, 91, 210, 1)"],
 };
 
 export const CricPieChartData2 = {
@@ -610,7 +610,7 @@ export const CricPieChartData2 = {
     { name: "loses", value: 30 },
   ],
 
-  colors: ["rgba(216, 150, 22, 1)", "rgba(147, 147, 150, 1)"],
+  colors: ["rgba(170, 99, 171, 1)", "rgba(147, 147, 150, 1)"],
 };
 
 
@@ -620,5 +620,5 @@ export const badmintonData = {
     { name: "loses", value: 30 },
   ],
 
-  colors: ["rgba(216, 150, 22, 1)", "rgba(147, 147, 150, 1)"],
+  colors: ["rgba(71, 91, 210, 1)", "rgba(147, 147, 150, 1)"],
 };

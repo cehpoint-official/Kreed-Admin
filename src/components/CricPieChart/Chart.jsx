@@ -32,8 +32,8 @@ const Chart = (props) => {
   };
 
   return (
-    <ResponsiveContainer width="99%" height="80%">
-      <PieChart width={400} height={400} >
+    <ResponsiveContainer width="99%" height="70%">
+      <PieChart width={400} height={300} >
         <Pie
           data={data}
           labelLine={false}

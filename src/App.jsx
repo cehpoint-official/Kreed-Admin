@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Home from "./pages/Home/Home";
 import Users from "./pages/Users/Users";
 import { profile } from "./data"
@@ -6,7 +6,8 @@ import { profile } from "./data"
 import {
   createBrowserRouter,
   RouterProvider,
-  Outlet
+  Outlet,
+  Navigate
 } from "react-router-dom";
 import Nav from "./components/Navbar/Nav";
 import Footer from "./components/Footer/Footer";
@@ -20,7 +21,17 @@ import Posts from "./pages/Posts/Posts";
 import User from "./pages/User/User";
 import Setting from "./pages/SettingPage/Setting";
 import SmMenu from "./components/smMenu/SmMenu";
+import Login from "./pages/Login/Login";
+import { AuthContext } from "./context/AuthContext";
 const App = () => {
+
+  const {currentUser} = useContext(AuthContext)
+  
+  
+  const RequireAuth =({children})=>{
+    return currentUser ? (children) : <Navigate to="/"/>
+  }
+  console.log(currentUser);
   const Layout = () => {
     return (
       <div className="main">
@@ -42,43 +53,50 @@ const App = () => {
   };
 
   const router = createBrowserRouter([
+
+    {
+      path:"/",
+      element:  <Login/>
+
+    },
     {
      path:"/",
-     element: <Layout/>,
+     element: <RequireAuth><Layout/></RequireAuth>,
      children : [
      {
-      path : "/",
-      element : <Home/>
+      path : "/home",
+      element : <RequireAuth><Home/></RequireAuth>
      },
      {
       path : "/users",
-      element : <Users/>
+      element : <RequireAuth><Users/></RequireAuth>
      },
      {
       path : "/posts",
-      element : <Posts/>
+      element : <RequireAuth><Posts/></RequireAuth>
      },
      {
       path : "/cricket",
-      element : <Cricket/>
+      element : <RequireAuth><Cricket/></RequireAuth>
      },
      {
       path : "/badminton",
-      element : <Badminton/>
+      element : <RequireAuth><Badminton/></RequireAuth>
      },
      {
       path : "/profile",
-      element : <Profile {...profile}/>
+      element : <RequireAuth><Profile {...profile}/></RequireAuth>
      },
      {
       path : "/users/:id",
-      element : <User/>
+      element : <RequireAuth><User/></RequireAuth>
      },
      {
       path : "/setting",
-      element : <Setting/>
+      element : <RequireAuth><Setting/></RequireAuth>
      },
-    
+     
+   
      ]
     },
   ]);

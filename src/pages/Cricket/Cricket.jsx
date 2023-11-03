@@ -75,7 +75,7 @@ const Cricket = () => {
           <p>MVPs to Matches Percentage</p>
           <div className="text ">
             <div className="color1"></div>
-            <p>MVPs</p>
+            <p>MVPs in Matchs</p>
           </div>
           <div className="text">
             <div className="color2"></div>
