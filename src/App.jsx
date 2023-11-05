@@ -23,6 +23,7 @@ import Setting from "./pages/SettingPage/Setting";
 import SmMenu from "./components/smMenu/SmMenu";
 import Login from "./pages/Login/Login";
 import { AuthContext } from "./context/AuthContext";
+import { Toaster } from 'react-hot-toast';
 const App = () => {
 
   const {currentUser} = useContext(AuthContext)
@@ -35,6 +36,7 @@ const App = () => {
   const Layout = () => {
     return (
       <div className="main">
+        <Toaster/>
         <Nav />
         <SmMenu/>
 
