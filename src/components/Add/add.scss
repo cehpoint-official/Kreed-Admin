@@ -92,6 +92,7 @@ label{
         }
       }
       button {
+    
         width: 100%;
         padding: 10px;
         cursor: pointer;
@@ -100,6 +101,12 @@ label{
         color: $text;
         font-weight: bolder;
         font-size: 15px;
+        border: none;
+
+        &:disabled{
+          background-color: rgba(199, 199, 199, 0.174);
+          cursor: not-allowed;
+        }
       }
     }
   }
