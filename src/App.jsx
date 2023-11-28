@@ -32,7 +32,6 @@ const App = () => {
   const RequireAuth =({children})=>{
     return currentUser ? (children) : <Navigate to="/"/>
   }
-  console.log(currentUser);
   const Layout = () => {
     return (
       <div className="main">

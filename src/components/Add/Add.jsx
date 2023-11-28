@@ -62,6 +62,7 @@ const Add = (props) => {
     const id = e.target.id;
     const value = e.target.value;
     setData({ ...data, [id]: value });
+    console.log(data);
   };
 
   const handleSubmit = async (e) => {
