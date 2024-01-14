@@ -111,7 +111,7 @@ const Users = () => {
       </div>
       <DataTableMui slug="users" columns={columnsTable} rows={userRows} />
 
-      {open && <Add slug="user" columns={columns} setOpen={setOpen} />}
+      {open && <Add slug="user" setOpen={setOpen} />}
     </div>
   );
 };

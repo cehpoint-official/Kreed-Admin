@@ -39,6 +39,10 @@ a {
 .contentContainer {
   padding: 5px 20px;
   width: 75%;
+  @media screen and (max-width: 543px) {
+  width: 100%;
+   
+  }
 
   @include xsm {
     display: flex;

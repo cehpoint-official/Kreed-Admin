@@ -1,78 +1,97 @@
 import React, { useEffect, useState } from "react";
-import "./muiTable.scss";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { collection, getDocs } from "firebase/firestore";
+import "../../components/dataTableMui/muiTable.scss";
+import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
-import { db } from "../../firebase";
+import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
+import { db } from "../../firebase"
+import { userColumns } from "../../userColoums";
 
-const DataTableMui = (props) => {
+const Datatable = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        let list = [];
-        const querySnapshot = await getDocs(collection(db, "users"));
-        querySnapshot.forEach((doc) => {
-          list.push(doc.data());
-        });
-        // setData(list)
-        console.log(list);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
-  }, []);
+    // const fetchData = async()=>{
+    //   let list = []
+    //   try{
 
-  const handleDelete = (id) => {
-    console.log(id + " has been deleted");
+    //     const querySnapshot = await getDocs(collection(db, "users"));
+    //     querySnapshot.forEach((doc) => {
+    //       list.push({id : doc.id , ...doc.data()})
+    //     });
+    //     setData(list)
+    //     console.log(list);
+    //   } catch(err){
+    //     console.log(err);
+    //   }
+
+    // }
+    // fetchData()
+
+    //listen(real-time-database)
+
+    const unsub = onSnapshot(collection(db, "users"), (snapShot) => {
+      let list = []
+      snapShot.docs.forEach(doc => {
+        list.push({ id: doc.id, ...doc.data() })
+      })
+      setData(list)
+    }, (error) => {
+      console.log(error);
+    });
+    return () => {
+      unsub()
+    }
+  }, [])
+
+  const handleDelete = async (id) => {
+    try {
+      await deleteDoc(doc(db, "users", id));
+      setData(data.filter((item) => item.id !== id));
+    } catch (err) {
+      console.log(err);
+    }
   };
-  const actionCol = {
-    field: "action",
-    headerName: "Action",
-    width: "200",
-    renderCell: (params) => {
-      return (
-        <div className="action">
-          <Link to={`/${props.slug}/${params.row.id}`}>
-            <img src="/svgs/view.svg" alt="" />
-          </Link>
-          <div className="delete" onClick={() => handleDelete(params.row.id)}>
-            <img src="/svgs/delete.svg" alt="" />
+  const actionColumn = [
+    {
+      field: "action",
+      headerName: "Action",
+      width: 200,
+      renderCell: (params) => {
+        return (
+          <div className="cellAction">
+            <Link to="/users/test">
+              <div className="viewButton">View</div>
+            </Link>
+            <div
+              className="deleteButton"
+              onClick={() => handleDelete(params.row.id)}
+            >
+              Delete
+            </div>
           </div>
-        </div>
-      );
+        );
+      },
     },
-  };
+  ];
   return (
-    <div className="muiTable">
+    <div style={{ width: "90%" }} className="dataTable">
+      <div className="datatableTitle">
+        Add New User
+     
+      </div>
       <DataGrid
-        className="dataGrid"
+        className="datagrid"
         rows={data}
-        columns={[...props.columns, actionCol]}
-        slots={{ toolbar: GridToolbar }}
-        slotProps={{
-          toolbar: {
-            showQuickFilter: true,
-            quickFilterProps: { debounceMs: 500 },
-          },
-        }}
+        columns={userColumns.concat(actionColumn)}
         initialState={{
           pagination: {
-            paginationModel: {
-              pageSize: 8,
-            },
+            paginationModel: { page: 0, pageSize: 5 },
           },
         }}
-        pageSizeOptions={[5]}
-        checkboxSelection
-        disableRowSelectionOnClick
-        disableDensitySelector
-        disableColumnSelector
+        pageSizeOptions={[5, 10]}
       />
     </div>
   );
 };
 
-export default DataTableMui;
+export default Datatable;
